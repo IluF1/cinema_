@@ -1,0 +1,27 @@
+.transparent-btn {
+  background-color: transparent;
+  border: none;
+  color: #344051;
+  outline: none;
+  cursor: pointer;
+}
+.image {
+  position: absolute;
+  margin-left: -40px;
+  margin-top: -3px;
+}
+.default-btn {
+  background-color: #9534d2;
+  width: 328px;
+  height: 56px;
+  text-align: center;
+  border: none;
+  outline: none;
+  color: white;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.default-btn:hover {
+  background-color: #6e279a;
+}

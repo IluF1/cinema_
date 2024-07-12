@@ -1,0 +1,43 @@
+.container {
+    display: block;
+    height: 80px;
+    width: 100%;
+    border-bottom: 1px solid #ced2da;
+    padding: 20px 200px 0px 200px;
+}
+
+.pagesList li {
+    list-style-type: none;
+    display: inline;
+}
+li:last-child {
+    margin-left: 70px;
+}
+
+.pagesList {
+    margin-left: 180px;
+    margin-top: -30px;
+}
+
+.exitBtn{
+    float: right;
+    margin-top: -20px;
+}
+.enter {
+    float: right;
+    margin-top: 15px;
+}
+
+@media screen and (max-width:1000px){
+    .enter, .exitBtn, .logo {
+        display: none;
+    }
+    .pagesList {
+        margin-top: 14px;
+        margin-left: 0;
+    }
+    .container {
+        padding: 20px 0px 0px 0px ;
+        text-align: center;
+    }
+}

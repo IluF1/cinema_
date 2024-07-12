@@ -1,0 +1,10 @@
+.description_block, .button_block, .code_block {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.send_again_text {
+    text-decoration: underline;
+    color: #344051;
+    cursor: pointer;
+}

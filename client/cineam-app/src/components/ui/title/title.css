@@ -1,0 +1,14 @@
+.big-title {
+  font-size: 24px;
+  color: #141c24;
+  font-weight: 700;
+  line-height: 24px;
+}
+.small-title {
+  color: #141c24;
+  font-weight: 400;
+}
+.blue-title {
+  color: #637083;
+  font-size: 14px;
+}

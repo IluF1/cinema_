@@ -31,7 +31,7 @@ func (s *Storage) Close() {
 	}
 }
 
-func (s *Storage) GetUserByEmail(email string) (*models.User, error) {
+func (s *Storage) GetUserByEmailFromDatabase(email string) (*models.User, error) {
 	var user models.User
 	sqlStatement := `SELECT firstname, lastname, surname, email, city FROM users`
 	row := s.db.QueryRow(sqlStatement, email)
@@ -44,15 +44,29 @@ func (s *Storage) GetUserByEmail(email string) (*models.User, error) {
 	return &user, nil
 }
 
-func (s *Storage) GetMovies() (*models.Movie, error) {
-	var movie models.Movie
-	sqlStatement := `SELECT name, description, rating FROM movies`
-	row := s.db.QueryRow(sqlStatement)
-
-	err := row.Scan(&movie.Name, &movie.Description, &movie.Rating)
+func (s *Storage) GetMoviesFromDatabase() ([]models.Movie, error) {
+	sqlStatement := `SELECT name, description, rating, image, id FROM movies`
+	rows, err := s.db.Query(sqlStatement)
 	if err != nil {
-		logger.Logger.Fatal(err.Error())
+		return nil, err
+	}
+	defer rows.Close()
+
+	movies := make([]models.Movie, 0)
+
+	for rows.Next() {
+		var movie models.Movie
+		err := rows.Scan(&movie.Name, &movie.Description, &movie.Rating, &movie.Image, &movie.Id)
+		if err != nil {
+			logger.Logger.Error("Error scanning row:"+ err.Error())
+			continue
+		}
+		movies = append(movies, movie)
 	}
 
-	return &movie, nil
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+
+	return movies, nil
 }

@@ -2,13 +2,8 @@ package main
 
 import (
 
-	// "github.com/cinema/server/internal/servers"
-	"fmt"
-
 	"github.com/cinema/server/internal/servers"
-	"github.com/cinema/server/internal/storage"
 
-	// "github.com/cinema/server/internal/storage"
 	"github.com/cinema/server/pkg/logger"
 )
 
@@ -20,14 +15,5 @@ func main() {
 	}
 
 	logger.Init()
-	srv.SetupRouter()
 
-	store, err := storage.New()
-	if err != nil {
-		logger.Logger.Error(err.Error())
-	}
-
-	defer store.Close()
-	fmt.Println(store.GetMovies())
-	// store.GetUserByEmail("asdfasfasdf")
 }

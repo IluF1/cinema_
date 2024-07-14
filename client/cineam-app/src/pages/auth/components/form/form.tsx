@@ -12,6 +12,7 @@ export const Form = () => {
   const { timer, end } = useTimer(60, active);
   const { setAuth } = useAuthStore();
   const { onEmailChange, emailError, email, disable } = useValidation();
+
   return (
     <div>
       <Title style='big'>Авторизация</Title>
@@ -31,25 +32,26 @@ export const Form = () => {
         type='email'
         value={email}
         onChange={(event: ChangeEvent<HTMLInputElement>) => onEmailChange(event)}
+        error={!!emailError}
       />
-      {emailError.length ? <Title style='error'>{emailError}</Title> : null}
-      {active ? (
+      {emailError && <Title style='error'>{emailError}</Title>}
+      {active && (
         <div className={styles.code_block}>
           <Input placeholder='Проверочный код' type='text' />
         </div>
-      ) : null}
+      )}
       <div className={styles.button_block}>
         <Button
           style='default'
           img={false}
           onClick={!active ? () => setActive(true) : () => setAuth()}
-          disabled = {disable}
+          disabled={disable}
         >
           {active ? 'Войти' : 'Продолжить'}
         </Button>
       </div>
-      {active && !end ? <Title style='blue'>Отправить код повторно через {timer} сек</Title> : null}
-      {end ? <a className={styles.send_again_text}>Отправить ещё раз</a> : null}
+      {active && !end && <Title style='blue'>Отправить код повторно через {timer} сек</Title>}
+      {end && <a className={styles.send_again_text}>Отправить ещё раз</a>}
     </div>
   );
 };

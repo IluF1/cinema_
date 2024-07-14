@@ -3,7 +3,7 @@ package servers
 import (
 	"net/http"
 
-	"github.com/cinema/server/internal/services/user"
+	"github.com/cinema/server/internal/services/movie"
 	"github.com/gorilla/mux"
 )
 
@@ -13,10 +13,14 @@ type server struct {
 }
 
 func New(addr string) *server {
-	return &server{
+	s := &server{
 		addr:   addr,
 		router: mux.NewRouter(),
 	}
+
+	s.SetupRouter()
+
+	return s
 }
 
 func (s *server) Run() error {
@@ -24,5 +28,5 @@ func (s *server) Run() error {
 }
 
 func (s *server) SetupRouter() {
-	s.router.HandleFunc("/api/user", user.User)
+	s.router.HandleFunc("/api/movies", movie.GetMovies).Methods(http.MethodGet)
 }

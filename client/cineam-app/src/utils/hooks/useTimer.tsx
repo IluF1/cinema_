@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 export const useTimer = (time: number, active: boolean) => {
   const [timer, setTimer] = useState<number>(time);
   const [end, setEnd] = useState<boolean>(false);
+ 
 
   useEffect(() => {
     if (!active) return;

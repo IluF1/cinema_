@@ -1,7 +1,9 @@
 package models
 
 type Movie struct {
-	Name        string  `db:"name"`
-	Description string  `db:"description"`
-	Rating      float64 `db:"rating"`
+	Id          int64   `json:"id"`
+	Name        string  `json:"name"`
+	Description string  `json:"description"`
+	Rating      float64 `json:"rating"`
+	Image       string  `json:"image"`
 }

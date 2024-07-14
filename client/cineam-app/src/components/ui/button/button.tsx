@@ -9,7 +9,7 @@ interface IButtonProps {
   style: stylesBtn;
   image?: string;
   img: boolean;
-  disabled ?: boolean
+  disabled?: boolean;
 }
 
 export const Button = ({ children, onClick, style, image, img, disabled }: IButtonProps) => {
@@ -27,7 +27,7 @@ export const Button = ({ children, onClick, style, image, img, disabled }: IButt
     classNames.push('transparent-btn');
   }
   return (
-    <button onClick={onClick} className={classNames.join(' ')} disabled = {disabled}>
+    <button type='submit' onClick={onClick} className={classNames.join(' ')} disabled={disabled}>
       {img ? <img src={image} alt='image' className='image' /> : null}
       {children}
     </button>

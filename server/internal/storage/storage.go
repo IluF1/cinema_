@@ -33,10 +33,10 @@ func (s *Storage) Close() {
 
 func (s *Storage) GetUserByEmail(email string) (*models.User, error) {
 	var user models.User
-	sqlStatement := `SELECT firstname, lastname, surname, email, password, city FROM users`
+	sqlStatement := `SELECT firstname, lastname, surname, email, city FROM users`
 	row := s.db.QueryRow(sqlStatement, email)
 
-	err := row.Scan(&user.Firstname, &user.Lastname, &user.Surname, &user.Email, &user.Password, &user.City)
+	err := row.Scan(&user.Firstname, &user.Lastname, &user.Surname, &user.Email, &user.City)
 	if err != nil {
 		logger.Logger.Error(err.Error())
 	}

@@ -3,6 +3,7 @@ package servers
 import (
 	"net/http"
 
+	"github.com/cinema/server/internal/services/user"
 	"github.com/gorilla/mux"
 )
 
@@ -23,4 +24,5 @@ func (s *server) Run() error {
 }
 
 func (s *server) SetupRouter() {
+	s.router.HandleFunc("/api/user", user.User)
 }
